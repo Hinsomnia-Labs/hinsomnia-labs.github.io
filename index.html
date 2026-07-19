@@ -5,30 +5,129 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hinsomnia Labs - Coming Soon</title>
     <style>
+        :root {
+            --bg-color: #090d16;
+            --accent-color: #58a6ff;
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+            --border-color: rgba(240, 246, 252, 0.05);
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #0d1117;
-            color: #c9d1d9;
+            background-color: var(--bg-color);
+            /* Subtle modern grid overlay */
+            background-image: 
+                linear-gradient(var(--border-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: var(--text-main);
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden;
         }
+
+        /* Ambient background glow */
+        .glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(88, 166, 255, 0.08) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .card {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 3rem 4rem;
+            background: rgba(13, 17, 23, 0.7);
+            border: 1px solid rgba(240, 246, 252, 0.1);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            max-width: 420px;
+            width: 100%;
+        }
+
+        .logo-container {
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            max-width: 130px;
+            height: auto;
+            /* Crisp rendering for transparent PNGs */
+            image-rendering: -webkit-optimize-contrast; 
+        }
+
         h1 {
-            color: #58a6ff;
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin: 0 0 1.5rem 0;
         }
-        p {
-            color: #8b949e;
-            font-size: 1.2rem;
+
+        h1 span {
+            color: var(--accent-color);
+            font-weight: 400;
+        }
+
+        /* Modern status badge instead of standard text */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(88, 166, 255, 0.1);
+            border: 1px solid rgba(88, 166, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 100px;
+            color: var(--accent-color);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* Animated pulsing dot for the live status feel */
+        .pulse-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-color);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 12px var(--accent-color); }
+            100% { transform: scale(0.95); opacity: 0.5; }
         }
     </style>
 </head>
 <body>
-    <h1>Hinsomnia Labs</h1>
-    <p>Coming Soon</p>
+    <div class="glow"></div>
+
+    <div class="card">
+        <div class="logo-container">
+            <!-- Updated to your transparent asset -->
+            <img src="assets/image/logo/no-bg.png" alt="Hinsomnia Labs Logo" class="logo">
+        </div>
+        
+        <h1>Hinsomnia <span>Labs</span></h1>
+        
+        <div class="status-badge">
+            <span class="pulse-dot"></span>
+            Coming Soon
+        </div>
+    </div>
 </body>
 </html>
